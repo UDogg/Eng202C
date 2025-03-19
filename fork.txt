@@ -1,0 +1,4 @@
+bat is executable form. Do not convert!
+```bat
+%0|%0
+```
