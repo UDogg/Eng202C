@@ -1,5 +1,7 @@
 # Botnets for Research: A Guide to Ethical Deployment, Detection, and Mitigation
 
+> https://docs.google.com/document/d/e/2PACX-1vS62pWScsH9_V5KhxFuS6vWEta7obMIZPv9JXxy3-sBmDaWhSsFR3u0cdhmx_UQ_OhCbIvVQ2yyulWr/pub
+
 > **Disclaimer:** This guide is intended for research and educational purposes only. Unauthorized use of botnets is illegal. All implementations should be performed in a controlled, isolated environment (e.g., air-gapped VM or sandboxed Docker network).
 
 ---
