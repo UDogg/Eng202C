@@ -12,7 +12,7 @@
 5. [Mini Implementation of a Malicious Toy Botnet](#5-mini-implementation-of-a-malicious-toy-botnet)
 6. [Deploying the Botnet in Ubuntu 22.04 VM](#6-deploying-the-botnet-in-ubuntu-2204-vm)
 7. [Detecting the Botnet & IDS Animation](#7-detecting-the-botnet--ids-animation)
-8. [Implementing a Mesh-Based Honeypot (100 Docker Nodes)](#8-implementing-a-mesh-based-honeypot-100-docker-nodes)
+8. [Implementing a Mesh-Based Honeypot (100 Docker Nodes)](#8-implementing-a-mesh-based-honeypot-100-docker-nodes)  
 8.5. [Using a Layered Architecture to Detect a Botnet](#85-using-a-layered-architecture-to-detect-a-botnet)
 9. [Capturing and Reverse Engineering the Worm](#9-capturing-and-reverse-engineering-the-worm)
 10. [Positive Use Case: Load Testing a Kubernetes Network](#10-positive-use-case-load-testing-a-kubernetes-network)
