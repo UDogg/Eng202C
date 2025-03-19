@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  ssh_honeypot:
+    image: cowrie/cowrie
+    container_name: ssh_honeypot
+    networks:
+      - honeynet
+    ports:
+      - "2222:22"
+    environment:
+      - ROOT_PASSWORD=toor
+    volumes:
+      - ./cowrie_logs:/cowrie/log
+
+  smb_honeypot:
+    image: dtag-dev-sec/tpotce
+    container_name: smb_honeypot
+    networks:
+      - honeynet
+    ports:
+      - "445:445"
+    restart: unless-stopped
+
+  iot_honeypot:
+    image: cfm/honeyiot
+    container_name: iot_honeypot
+    networks:
+      - honeynet
+    ports:
+      - "23:23"
+      - "80:80"
+    restart: unless-stopped
+
+  redis_mesh:
+    image: redis
+    container_name: redis_mesh
+    networks:
+      - honeynet
+    restart: always
+
+  elk_server:
+    image: sebp/elk
+    container_name: elk_server
+    networks:
+      - honeynet
+    ports:
+      - "5601:5601"
+      - "9200:9200"
+      - "5044:5044"
+    restart: always
+    volumes:
+      - ./elk_logs:/var/log/elk
+
+networks:
+  honeynet:
+    driver: bridge
