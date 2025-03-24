@@ -1,0 +1,286 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage[english]{babel}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{soul}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{mdframed}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usetikzlibrary{positioning,shapes.geometric,arrows.meta,fit,backgrounds}
+\usetikzlibrary{calc}
+
+% Custom colors for code listings and highlights
+\definecolor{codegreen}{rgb}{0.5,0.7,0.5}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.90,0.92,0.99}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\chead{Instructor: Professor Sharon Myers}
+\lfoot{English 202C, Spring 2025, Instruction Set}
+\cfoot{\thepage}
+\rfoot{UC Choudhary (ufc5009)}
+
+\title{Instruction Set: Guide to Desktop PC Assembly and Overclocking}
+\author{Author: UC Choudhary}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\tableofcontents
+\newpage
+
+\begin{tcolorbox}[
+  colback=backcolour,            % background color
+  colframe=blue!75!black,    % border color
+  title={Introduction},
+  fonttitle=\bfseries\large,
+  arc=4mm,                  % rounded corners
+  boxrule=1pt,              % border thickness
+  left=10pt, right=10pt,    % inner horizontal padding
+  top=10pt, bottom=10pt,    % inner vertical padding
+  enhanced
+]
+\section{Introduction}
+Constructing a bespoke desktop tower is more than assembling hardware—it is a journey into understanding computer architecture, performance optimization, and system customization. This guide is designed for both novices and enthusiasts who wish to gain an intimate familiarity with the components, techniques, and best practices involved in creating and optimizing a high-performance desktop system. 
+
+In this comprehensive manual, you will learn not only how to select and assemble the necessary components, but also how to overclock your system (with a dedicated section on MSI-based towers) and understand the technical terminology used in modern computing.
+\end{tcolorbox}
+
+\section{Component Selection Methodology}
+Component selection is critical to ensure that your system meets your intended use-case, whether it be high-performance gaming, professional content creation, or research-based computational tasks.
+
+\subsection{Determination of Operational Objectives}
+\begin{itemize}[itemsep=5pt]
+    \item \textbf{Gaming Systems:} 
+    \begin{itemize}[label=--]
+        \item Emphasize high-end GPUs for rendering high-definition visuals.
+        \item Incorporate monitors with high-refresh rates and low response times.
+        \item Use responsive input peripherals (keyboards, mice) optimized for gaming.
+    \end{itemize}
+    \item \textbf{Professional Content Creation:}
+    \begin{itemize}[label=--]
+        \item Select CPUs with high core and thread counts to handle multitasking.
+        \item Invest in ample high-speed memory (RAM) and rapid storage solutions such as NVMe SSDs.
+        \item Ensure color-accurate displays and peripherals suited for creative work.
+    \end{itemize}
+    \item \textbf{Enthusiast and Overclocking-Oriented Configurations:}
+    \begin{itemize}[label=--]
+        \item Prioritize motherboards with robust power delivery systems.
+        \item Utilize advanced cooling solutions (custom liquid cooling loops, extensive air cooling).
+        \item Consider components with high headroom for performance tuning.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Form Factor Considerations and Motherboard Specifications}
+\begin{itemize}[itemsep=5pt]
+    \item \textbf{Extended ATX (E-ATX):} 
+    \begin{itemize}[label=--]
+        \item Provides maximum expansion slots, ideal for multi-GPU configurations and enhanced cooling systems.
+        \item Supports additional components for advanced connectivity.
+    \end{itemize}
+    \item \textbf{Standard ATX:}
+    \begin{itemize}[label=--]
+        \item Balances expandability and compatibility; widely supported by most cases and power supplies.
+    \end{itemize}
+    \item \textbf{Micro-ATX:}
+    \begin{itemize}[label=--]
+        \item Offers a more compact design while still providing essential expansion options.
+    \end{itemize}
+    \item \textbf{Mini-ITX:}
+    \begin{itemize}[label=--]
+        \item Maximizes spatial efficiency but limits expandability and cooling potential.
+        \item Best suited for specialized applications where size is a primary constraint.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Budget Allocation Strategies}
+Allocate your budget based on performance needs:
+\begin{itemize}[itemsep=5pt]
+    \item \textbf{Graphics Processing Unit (GPU) (40-50\%):} 
+    \begin{itemize}[label=--]
+        \item Critical for rendering, parallel processing, and handling graphics-intensive applications.
+    \end{itemize}
+    \item \textbf{Central Processing Unit (CPU) (20-30\%):} 
+    \begin{itemize}[label=--]
+        \item Ensures computational efficiency and is key for multitasking and professional-grade applications.
+    \end{itemize}
+    \item \textbf{Memory (RAM) (10-15\%):}
+    \begin{itemize}[label=--]
+        \item Vital for rapid data access and handling multiple applications concurrently.
+    \end{itemize}
+    \item \textbf{Auxiliary Components:} 
+    \begin{itemize}[label=--]
+        \item Allocate remaining funds to storage devices (NVMe SSDs, SATA HDDs), power supply units (PSUs), cooling solutions, and chassis.
+    \end{itemize}
+\end{itemize}
+
+\section{Rigorous Assembly Protocol}
+Following a systematic approach to assembly will ensure optimal performance and longevity of your system.
+
+\subsection{Workspace Preparation and Electrostatic Mitigation}
+\begin{itemize}[itemsep=5pt]
+    \item \textbf{Electrostatic Discharge (ESD) Precautions:}
+    \begin{itemize}[label=--]
+        \item Wear anti-static wristbands and periodically ground yourself on conductive surfaces.
+        \item Assemble components on non-conductive surfaces to minimize risk.
+    \end{itemize}
+    \item \textbf{Workspace Organization:}
+    \begin{itemize}[label=--]
+        \item Ensure ample ambient lighting and keep components organized to reduce the risk of misplacement or damage.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Processor (CPU) Installation Procedure}
+\begin{itemize}[itemsep=5pt]
+    \item \textbf{Alignment and Seating:}
+    \begin{itemize}[label=--]
+        \item Carefully align the CPU’s notches or indicator marks with the socket on the motherboard.
+        \item Use the provided locking lever to secure the CPU without applying undue force.
+    \end{itemize}
+    \item \textbf{Thermal Interface Preparation:}
+    \begin{itemize}[label=--]
+        \item Apply a thin, even layer of thermal paste on the CPU surface before installing the cooling solution.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Memory Module Integration}
+\begin{itemize}[itemsep=5pt]
+    \item \textbf{Slot Identification and Configuration:}
+    \begin{itemize}[label=--]
+        \item Consult the motherboard manual to determine the optimal DIMM slots for dual- or quad-channel configurations.
+    \end{itemize}
+    \item \textbf{Secure Installation:}
+    \begin{itemize}[label=--]
+        \item Firmly seat each module until the retention clips click into place, confirming secure installation.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Storage and Peripheral Integration}
+\begin{itemize}[itemsep=5pt]
+    \item \textbf{Storage Devices:}
+    \begin{itemize}[label=--]
+        \item NVMe SSDs: Connect directly to M.2 slots on the motherboard for maximum speed.
+        \item SATA Devices: Connect using SATA cables to designated ports; configure RAID if required.
+    \end{itemize}
+    \item \textbf{Peripheral Devices:}
+    \begin{itemize}[label=--]
+        \item Ensure proper connectivity for USB, audio, and network peripherals.
+    \end{itemize}
+\end{itemize}
+
+\section{Advanced Overclocking for MSI-Based Towers}
+Overclocking enhances your system’s performance by increasing the operational frequencies of components beyond their factory settings. This section focuses on overclocking an MSI-based tower, detailing every step from preparation to stress testing.
+
+\subsection{Introduction to Overclocking}
+Overclocking can significantly boost performance in applications such as gaming, rendering, and computational research. However, it requires careful adjustments to voltage, clock speeds, and cooling mechanisms to avoid hardware damage.
+
+\subsection{Precautions and Preparations}
+\begin{itemize}[itemsep=5pt]
+    \item \textbf{Cooling Enhancements:} 
+    \begin{itemize}[label=--]
+        \item Upgrade to high-performance cooling solutions such as custom liquid loops or advanced air coolers.
+        \item Monitor temperatures closely with software utilities.
+    \end{itemize}
+    \item \textbf{Stable Power Supply:} 
+    \begin{itemize}[label=--]
+        \item Ensure your PSU provides sufficient power headroom for increased voltage demands.
+    \end{itemize}
+    \item \textbf{Data Backup:}
+    \begin{itemize}[label=--]
+        \item Always backup important data before starting the overclocking process.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Step-by-Step BIOS Overclocking on MSI Platforms}
+\begin{enumerate}[itemsep=5pt]
+    \item \textbf{Enter the BIOS/UEFI:}
+    \begin{itemize}[label=--]
+        \item Restart your system and press the designated key (usually \texttt{Del} or \texttt{F2}) to enter the MSI BIOS.
+    \end{itemize}
+    \item \textbf{Navigate to the Overclocking Section:}
+    \begin{itemize}[label=--]
+        \item In the MSI BIOS, locate the “OC” or “Overclocking” tab. This section provides access to CPU multipliers, base clock (BCLK) adjustments, and voltage controls.
+    \end{itemize}
+    \item \textbf{CPU Frequency and Multiplier Adjustments:}
+    \begin{itemize}[label=--]
+        \item Incrementally increase the CPU multiplier. For each adjustment, save settings and boot into the operating system.
+        \item Use stress testing tools (e.g., Prime95, AIDA64) to ensure system stability after each change.
+    \end{itemize}
+    \item \textbf{Voltage Tuning:}
+    \begin{itemize}[label=--]
+        \item Gradually adjust the CPU core voltage (Vcore) to maintain stability during overclocking. Be cautious; even a small increase in voltage can significantly impact heat generation.
+    \end{itemize}
+    \item \textbf{Memory Overclocking:}
+    \begin{itemize}[label=--]
+        \item Enable the XMP (Extreme Memory Profile) to automatically set memory timings and frequency.
+        \item For further tuning, adjust the memory voltage and timings manually if your motherboard supports it.
+    \end{itemize}
+    \item \textbf{GPU Overclocking :}
+    \begin{itemize}[label=--]
+        \item For MSI-based GPUs, utilize MSI Afterburner to adjust core clock speeds, memory clock speeds, and fan curves.
+        \item Test for stability using benchmarking tools and monitor temperatures.
+    \end{itemize}
+    \item \textbf{Stress Testing and Monitoring:}
+    \begin{itemize}[label=--]
+        \item Run extended stress tests for 1-2 hours to ensure stability.
+        \item Monitor system temperatures and voltage levels using MSI Command Center or third-party utilities.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Troubleshooting and Final Considerations}
+\begin{itemize}[itemsep=5pt]
+    \item \textbf{System Instability:}
+    \begin{itemize}[label=--]
+        \item If crashes occur, revert to the last stable configuration and increment adjustments more slowly.
+    \end{itemize}
+    \item \textbf{Thermal Management:}
+    \begin{itemize}[label=--]
+        \item Continually monitor thermal readings; ensure that cooling solutions are adequate for the increased heat output.
+    \end{itemize}
+    \item \textbf{Documentation and Incremental Changes:}
+    \begin{itemize}[label=--]
+        \item Keep a log of all changes made in the BIOS. Incremental adjustments help isolate issues.
+    \end{itemize}
+\end{itemize}
+
+\section{Conclusion}
+Building and overclocking a custom desktop system is both an art and a science. This guide has provided detailed steps from component selection to rigorous assembly, as well as an in-depth overclocking procedure for MSI-based towers. The knowledge you gain through this process not only enhances performance but also deepens your understanding of computer engineering and system optimization.
+
+As technology continues to evolve, so too will the techniques for harnessing its full potential. Continue exploring, testing, and refining your system for both improved performance and a greater appreciation of the intricate hardware orchestration that powers modern computing.
+
+\section{Glossary of Technical Terms}
+\begin{description}[style=multiline, labelwidth=3cm, leftmargin=!, itemsep=5pt]
+    \item[ATX] A standard motherboard form factor that balances expandability with compatibility.
+    \item[E-ATX] Extended ATX; a larger form factor designed for high-end systems with additional expansion options.
+    \item[Micro-ATX] A smaller version of ATX offering moderate expansion capabilities suitable for compact builds.
+    \item[Mini-ITX] An ultra-compact motherboard format, ideal for small form-factor systems with limited expansion.
+    \item[CPU] Central Processing Unit; the primary processor responsible for executing instructions.
+    \item[GPU] Graphics Processing Unit; specialized for rendering images and handling parallel processing tasks.
+    \item[DIMM] Dual Inline Memory Module; the physical memory modules installed on the motherboard.
+    \item[PCIe] Peripheral Component Interconnect Express; a high-speed interface standard used to connect graphics cards, SSDs, and other peripherals.
+    \item[NVMe] Non-Volatile Memory Express; an interface protocol designed for high-speed communication with SSDs.
+    \item[SATA] Serial ATA; a standard interface for connecting storage devices such as hard drives and SSDs.
+    \item[PSU] Power Supply Unit; converts AC to low-voltage regulated DC power for the internal components.
+    \item[BIOS/UEFI] Basic Input/Output System / Unified Extensible Firmware Interface; firmware used to initialize hardware during boot-up.
+    \item[XMP] Extreme Memory Profile; a technology that allows users to easily overclock RAM using predefined profiles.
+    \item[ESD] Electrostatic Discharge; a sudden flow of electricity between electrically charged objects which can damage sensitive components.
+    \item[Overclocking] The practice of increasing the operational frequency of hardware components beyond their default specifications to achieve enhanced performance.
+    \item[MSI Command Center] A utility provided by MSI for monitoring and tuning system performance and overclocking settings.
+    \item[MSI Afterburner] A popular software tool used primarily for GPU overclocking, including adjustments to core clock, memory clock, and fan speed.
+\end{description}
+
+\end{document}
