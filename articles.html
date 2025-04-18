@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMPSC Articles</title>
+</head>
+<body>
+    <hr />
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin-bottom: 2em;">
+        <h1 style="color: #0056b3; text-align: center; font-size: 2em;">How I Overcame Imposter Syndrome as a Software Dev</h1>
+        <p style="margin-bottom: 1em;">When I joined a high-stakes fintech team, the summer after high-school, I felt like an <em>idiot</em> commoner masquerading behind lines of C++ and Python. Each pull request triggered a wave of self-doubt and anxiety that seemed irrevocable. Imposter syndrome hijacks neuroplasticity and spawns endless what-ifs. But with deliberate practice, I transformed that crushing feeling into a catalyst for growth, proving that no one’s journey is as <em>desultory</em> as it seems.</p>
+        <p style="margin-bottom: 1em;"><strong>Embrace Cognitive Reframing:</strong> I started by recognizing negative self-talk as a <em>circuitous</em> loop of distortions. Using retrospection dashboards, I catalogued every bug squashed and feature shipped. Seeing objective data helped me pivot from “I’m a fraud” to “I’m a learner,” rewiring my mindset over weeks via micro-journaling and intentional affirmations.</p>
+        <p style="margin-bottom: 1em;"><strong>Attend Tech Convenings:</strong> Conferences once filled me with dread, but meeting luminaries who candidly shared their <em>vicissitudes</em> was liberating. Over coffee, I discovered even senior engineers commit monumental flubs—missing semicolons, misconfigured CI pipelines, and catastrophic merge conflicts. Realizing brilliance coexists with fallibility was a perspicacious awakening.</p>
+        <p style="margin-bottom: 1em;"><strong>Build a Mentorship Cohort:</strong> I recruited three peers for weekly pairing sessions. Our code reviews became a safe space for candor, where constructive feedback felt less like crucifixion and more like calibration. Leveraging asynchronous chat threads and a shared Kanban board, we celebrated every refactor, no matter how trivial.</p>
+        <p style="margin-bottom: 1em;"><strong>Track Micro-Victories:</strong> I maintained a “win diary” in Markdown, logging each resolved issue, successful deploy, and positive Slack kudos. This technique—rooted in psychometric journaling—fortified my confidence during inevitable setbacks. Reviewing past wins renewed my resolve.</p>
+        <p style="margin-bottom: 1em;"><strong>Iterate and Reflect:</strong> Every quarter, I conducted a self-audit: quantifying code coverage improvements, latency reductions, and customer support tickets closed. These metrics provided tangible proof of growth and dispelled the <em>abstruse</em> specter of inadequacy.</p>
+        <p style="margin-bottom: 0;">Today, imposter syndrome still flickers but no longer immobilizes me. Armed with cognitive tools, peer support, and data-driven self-assessment, I navigate complex projects with a resilient, buoyant confidence. After all, every coder’s path is a mosaic of triumphs and missteps—embracing both is the key to mastery.</p>
+    </div>
+    <hr />
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin-bottom: 2em;">
+        <h1 style="color: #0056b3; text-align: center; font-size: 2em;">How I Built a Bot to Attack (and Crash‑Test) My Website</h1>
+        <p style="margin-bottom: 1em;">After a viral post triggered a deluge of HTTP GET floods, I architected a Python-based stress tester—my own swarm of requests designed for robust chaos engineering. This sesquipedalian script wielded the <code>requests</code> library and <code>ThreadPoolExecutor</code>, embodying concurrency paradigms that emulate real-world load patterns.</p>
+        <p style="margin-bottom: 1em;"><strong>Phase 1: Flood Generation:</strong> I wrote a loop to dispatch 10,000 GET calls, then parallelized it into 200 worker threads. By tuning socket options—such as <code>TCP_NODELAY</code> and <code>SO_REUSEADDR</code>—I minimized latency and port exhaustion, crafting an HTTP storm that revealed 503s and timeouts.</p>
+        <p style="margin-bottom: 1em;"><strong>Phase 2: Telemetry Pipeline:</strong> Metrics streamed to a Prometheus exporter I containerized in Go. Querying histogram buckets and summary metrics via Grafana dashboards surfaces 95th percentile latency spikes. This observability stack served as my sesquipedalian feedback loop.</p>
+        <p style="margin-bottom: 1em;"><strong>Phase 3: Adaptive Throttling:</strong> I implemented a leaky-bucket algorithm client-side: if errors exceeded 5%, the bot backs off for a randomized exponential window. This ensures the test remains a diagnostic tool, not a Denial-of-Service event.</p>
+        <p style="margin-bottom: 1em;"><strong>Phase 4: Bottleneck Analysis:</strong> Profiling with Py-Spy and cProfile pinpointed slow database queries and template rendering hotspots. By introducing Redis caching for session tokens and optimizing Jinja2 loops, average response times plummeted from 1.2s to 120ms under peak load.</p>
+        <p style="margin-bottom: 1em;"><strong>Phase 5: Chaos Drills:</strong> I orchestrated kube-monkey canary terminations on pods mid-test, validating graceful degradation via circuit breakers in my Django REST framework endpoints. Observing automatic fallback to read-replicas ensured high availability.</p>
+        <p style="margin-bottom: 0;">Building this crash-tester endowed me with intimate knowledge of TCP churn, thread scheduling, and observability best practices. It’s the ultimate lucubration: breaking things deliberately to make them bulletproof.</p>
+    </div>
+    <hr />
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin-bottom: 2em;">
+        <h1 style="color: #0056b3; text-align: center; font-size: 2em;">How I’d Dodge a “Signalgate” Fiasco with Smarts and a Chuckle</h1>
+        <p style="margin-bottom: 1em;">Imagine declassifying Yemen strike plans via a consumer chat app—an <em>obstreperous</em> breach that reads like a farce. In 2025’s “Signalgate,” Trump 2.0’s cabinet invited a reporter into Signal, leaking `SIGUSR2`‑style secrets. Here’s my quixotic yet rigorous protocol, blending FIPS-140-3 compliance with a wink at human foibles.</p>
+        <p style="margin-bottom: 1em;"><strong>1. Government-Grade Messaging:</strong> Swap Signal for SIPRNet or SCIF platforms. These systems enforce zero-trust segmentation, immutable audit logs, and eliminate TTL-based auto-deletes. Every packet—text, emoji, or attachment—traverses a vetted, compartmentalized enclave.</p>
+        <p style="margin-bottom: 1em;"><strong>2. Cryptographic Agility:</strong> Use OpenPGP with Kleopatra (Gpg4Win), rotating keys weekly. Implement instant revocation via keyservers and script pre-send hooks that abort unencrypted drafts. If someone tries plain-text, Kleopatra will defenestrate the attempt.</p>
+        <p style="margin-bottom: 1em;"><strong>3. VIP Access Controls:</strong> Treat group membership like high-clearance facility entry. Two-factor OAuth checks, biometric unlocks, and an approval chain prevent errant adds. Centralized SIEM logs every change; any anomalous invite triggers real-time alerts.</p>
+        <p style="margin-bottom: 1em;"><strong>4. Paranoid Archiving:</strong> Route traffic through a hardened gateway appliance that captures full packet content and metadata. Daily incremental backups adhere to DO-178C level assurance. Quarterly purge drills validate that data retention aligns with the Federal Records Act.</p>
+        <p style="margin-bottom: 1em;"><strong>5. Red-Team Drills:</strong> Simulate journalist infiltration, autodelete misfires, and credential compromise. Regular game days ensure your team’s operational discipline is robust and immune to human caprice.</p>
+        <p style="margin-bottom: 0;">By fusing government-grade infrastructure, cryptographic rigor, VIP-style access controls, and draconian archiving, “Signalgate” remains a cautionary tale—and never your headline. After all, secure communications should be as mundane as DNS requests.</p>
+    </div>
+    <hr />
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin-bottom: 2em;">
+        <h1 style="color: #0056b3; text-align: center; font-size: 2em;">How I Accidentally Made My Neighbors Call the Police</h1>
+        <p style="margin-bottom: 1em;">Picture an antediluvian garage workshop ablaze with solder smoke and blinking LEDs. I was testing an ESP8266 beacon that broadcasted SSIDs every two seconds. I named it <code>SECRET_MILITARY_NETWORK</code>, assuming it’d amuse my team. Instead, it triggered RF scans across the block, alarming neighbors and prompting a 911 dispatch—an uproarious reminder that IoT folly transcends code.</p>
+        <p style="margin-bottom: 1em;"><strong>Lesson 1: RF Power Tuning:</strong> Cranking TX power to 20dBm renders your device a neighborhood transmitter. Dial down to 0–5dBm or use directional antennas to localize your signal.</p>
+        <p style="margin-bottom: 1em;"><strong>Lesson 2: SSID Semantics:</strong> A playful SSID like <code>ESP_TEST_42</code> beats ominous labels. Avoid alphanumeric gobbledegook that sows panic.</p>
+        <p style="margin-bottom: 1em;"><strong>Lesson 3: Shielded Testbeds:</strong> A Faraday cage—or even just a metal trash can lined with foam—contains 2.4GHz radiation. It’s a simple yet brilliant way to prevent unintended propagation.</p>
+        <p style="margin-bottom: 1em;"><strong>Lesson 4: Community Liaison:</strong> Post a sticky note: “Testing Wi-Fi device today. Please ignore SSID.” A small courtesy that averts big misunderstandings.</p>
+        <p style="margin-bottom: 0;">After apologizing to the local PD and decommissioning my <em>pusillanimous</em> SSID, I now respect the sanctity of the radio spectrum—and the importance of neighborly communication.</p>
+    </div>
+    <hr />
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin-bottom: 2em;">
+        <h1 style="color: #0056b3; text-align: center; font-size: 2em;">How I Accidentally Built a Ray Tracer by Tweaking My malloc()</h1>
+        <p style="margin-bottom: 1em;">In a quest to optimize allocator fragmentation, I rewrote <code>malloc()</code> as a slab allocator assigning fixed-size 4KB pages. Unbeknownst to me, this rearrangement created spatial locality that mapped directly onto ray-traversal requirements. By aligning geometry in contiguous memory slabs, I inadvertently unlocked real-time CPU-based ray tracing.</p>
+        <p style="margin-bottom: 1em;"><strong>Memory Coalescence & BVH Synergy:</strong> The slab-based free-list grouped triangles and materials in neighbor pages. When constructing a bounding volume hierarchy (BVH), pointer increments correlating to slab offsets became an implicit traversal heuristic—avoiding deep recursion.</p>
+        <p style="margin-bottom: 1em;"><strong>SIMD & Cache-Oblivious Loops:</strong> Leveraging auto-vectorization, I processed ray-object intersection tests via <code>__m256</code> intrinsics. Cache miss rates plummeted, enabling millions of rays per second on a single x86 core.</p>
+        <p style="margin-bottom: 1em;"><strong>Shader Remix:</strong> Minimal changes to my fragment shader cast primary rays by reading positions directly from slab addresses. Phong shading and depth-of-field effects emerged with under 100 lines of CPU-only code—no GPU APIs required.</p>
+        <p style="margin-bottom: 1em;"><strong>Serendipitous Innovation:</strong> This mellifluous fusion of allocator and renderer underscores that performance hacks can catalyze new paradigms. My malloc-based ray tracer now sits alongside my legacy rasterizer, a monument to creative experimentation.</p>
+        <p style="margin-bottom: 0;">Sometimes, the most profound breakthroughs arise from refactoring the mundane—proof that in systems programming, every optimization holds the promise of a paradigm shift.</p>
+    </div>
+    <hr />
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin-bottom: 2em;">
+        <h1 style="color: #0056b3; text-align: center; font-size: 2em;">How I Accidentally Parallelized My Code and Halved the Runtime</h1>
+        <p style="margin-bottom: 1em;">Abstract: A numerical simulation suffering from prolonged runtimes was inadvertently optimized by compiler flags and synchronization refinements, yielding a near 2× speedup. This case study examines the interplay of Amdahl’s Law, cache coherence, and thread scheduling in modern multicore architectures.</p>
+        <p style="margin-bottom: 1em;"><strong>Background:</strong> The original code employed a busy-wait loop using a shared <code>bool</code> flag, resulting in excessive CPU spin and memory bus contention. Profiling identified the spinlock section as the critical path, accounting for 70% of wall-clock time.</p>
+        <p style="margin-bottom: 1em;"><strong>Methodology:</strong> Replacing the spin-wait with a <code>pthread_cond_wait()</code> and <code>pthread_mutex_t</code> pair reduced unnecessary core occupancy, allowing OS-level thread rescheduling. Concurrently, applying <code>-O3 -march=native -funroll-loops</code> enabled auto-vectorization and SIMD dispatch via AVX2 instructions.</p>
+        <p style="margin-bottom: 1em;"><strong>Results:</strong> Benchmarking on an 8‑core Intel Xeon system revealed runtime halved from 480s to 240s. Analysis of hardware counters showed a 60% drop in cache misses and 2× throughput increase in floating-point units. Lock contention metrics (via perf trace) demonstrated a 90% reduction in context switch overhead.</p>
+        <p style="margin-bottom: 1em;"><strong>Discussion:</strong> This quixotic outcome emphasizes the power of unobtrusive optimizations. By addressing synchronization and data layout, the code attained near-linear scaling without explicit parallel constructs or OpenMP pragmas.</p>
+        <p style="margin-bottom: 0;">Conclusion: Measuring before refactoring and understanding microarchitectural behavior can yield transformative performance gains—often serendipitously. Future work includes exploring lock-free data structures and NUMA-aware scheduling to further diminish endemic bottlenecks.</p>
+    </div>
+    <hr />
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin-bottom: 2em;">
+        <h1 style="color: #0056b3; text-align: center; font-size: 2em;">How I Accidentally Turned My Garage into a Drone Launchpad</h1>
+        <p style="margin-bottom: 1em;">In a quest to validate my autopilot’s PID loops, I spun a quadcopter’s rotors at idle, expecting a modest hover. Instead, missing safety interlocks triggered full-thrust ascent into the rafters—an <em>ephemeral</em> flight that transformed my garage into a low-orbit testing range and drew a startled visit from local authorities.</p>
+        <p style="margin-bottom: 1em;"><strong>Dead Man’s Switch:</strong> Integrate a hardware failsafe requiring simultaneous button hold and command input to arm motors. This sagacious precaution prevents inadvertent spin-up during development.</p>
+        <p style="margin-bottom: 1em;"><strong>Tethered Trials:</strong> Attach a lightweight kevlar line to limit altitude to one meter. This simple mechanical restraint enables iterative tuning of PID coefficients without property damage.</p>
+        <p style="margin-bottom: 1em;"><strong>Geofencing & ESC Firmware:</strong> Leverage flight controller features—set maximum altitude and radius in the Betaflight configurator. Use telemetry logs to verify compliance with failsafe thresholds.</p>
+        <p style="margin-bottom: 1em;"><strong>Simulated Environments:</strong> Utilize PX4’s SITL and Gazebo for rapid algorithmic validation. Only migrate to hardware after passing exhaustive virtual regression tests.</p>
+        <p style="margin-bottom: 0;">By combining robust interlocks, tethered methodologies, geofencing, and simulator-based iteration, you’ll avoid impromptu drone airshows—and spare your neighbors the excitement of unexpected aerospace demonstrations.</p>
+    </div>
+    <hr />
+</body>
+</html>
