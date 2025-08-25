@@ -61,7 +61,7 @@
             margin-left: 4px;
         }
 
-        /* NEW: Styling for the Ticket Number field */
+        /* Styling for the Ticket Number field */
         #ticket-container {
             padding: 10px 0 20px 0;
             border-bottom: 1px solid #eee;
@@ -84,17 +84,19 @@
             font-size: 16px;
         }
 
-        /* Styling for the radio button and its label */
-        .radio-option {
+        /* Styling for the checkbox and its label */
+        .checkbox-option {
             display: flex;
             align-items: center;
-            gap: 10px; /* Space between radio button and text */
+            gap: 10px; /* Space between checkbox and text */
         }
         
-        /* NEW: Visual cue for disabled textarea */
-        textarea:disabled {
+        /* Visual cue for disabled textarea and checkbox */
+        textarea:disabled,
+        input[type="checkbox"]:disabled + label {
             background-color: #f9f9f9;
             cursor: not-allowed;
+            color: #999;
         }
 
         /* Styling for the justification textarea */
@@ -108,8 +110,8 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* NEW: Styling for the word counter */
-        #word-counter {
+        /* Styling for the word counter */
+        #character-counter {
             text-align: right;
             font-size: 14px;
             color: #666;
@@ -117,11 +119,11 @@
             font-weight: 500;
         }
 
-        #word-counter.warning {
+        #character-counter.warning {
             color: #ff6b35;
         }
 
-        #word-counter.error {
+        #character-counter.error {
             color: #e74c3c;
             font-weight: bold;
         }
@@ -209,12 +211,12 @@
 
         #generate-pdf-btn:hover:not(:disabled) {
             background-color: #0056b3;
-            transform: scale(1.05);
+            transform: scale(1.20);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         #generate-pdf-btn:active:not(:disabled) {
-            transform: scale(1.02);
+            transform: scale(1.08);
         }
         
         .form-alert {
@@ -247,7 +249,7 @@
     <div id="form-container">
         <h3>Format for Continuation of Non-Continuing Projects for posting transactions.</h3>
         <h4><i>Please select the appropriate option which must be signed by the relevant role holder.</i></h4>
-        <p><i><u>Please fill the form top to bottom.</u></i></p>
+        <p id="form-instruction"><i><u>Please fill the form top to bottom.</u></i></p>
         <p>This star (<span class="required-star">*</span> ) indicates required fields</p>
         <div id="ticket-container">
             <label id="ticket-label" for="ticket-number-input">AR Number/ WBSE Number<span class="required-star">*</span></label>
@@ -257,7 +259,7 @@
 
         <table>
             <tr>
-                <td colspan="2" class="header-cell">Reason for opening<span class="required-star">*</span></td>
+                <td colspan="2" class="header-cell">Reason for opening (select all that apply)<span class="required-star">*</span></td>
             </tr>
             <tr>
                 <td colspan="2"><div id="reason-alert" class="form-alert">Please select a reason.</div></td>
@@ -265,65 +267,70 @@
 
             <tr>
                 <td>
-                    <div class="radio-option">
-                        <input type="radio" id="reason1" name="reason" value="Closing PR/POs" disabled>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="reason1" name="reason" value="Closing PR/POs" disabled>
                         <label for="reason1">Closing PR/POs</label>
                     </div>
                 </td>
                 <td>
-                    <div class="radio-option">
-                        <input type="radio" id="reason2" name="reason" value="GST charge-off to project" disabled>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="reason2" name="reason" value="GST charge-off to project" disabled>
                         <label for="reason2">GST charge-off to project</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <div class="radio-option">
-                        <input type="radio" id="reason3" name="reason" value="GRs for STO" disabled>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="reason3" name="reason" value="GRs for STO" disabled>
                         <label for="reason3">GRs for STO</label>
                     </div>
                 </td>
                 <td>
-                    <div class="radio-option">
-                        <input type="radio" id="reason4" name="reason" value="GST paid to vendor but not claimed" disabled>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="reason4" name="reason" value="GST paid to vendor but not claimed" disabled>
                         <label for="reason4">GST paid to vendor but not claimed</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                     <div class="radio-option">
-                        <input type="radio" id="reason5" name="reason" value="Closing of associated Revex internal orders" disabled>
+                     <div class="checkbox-option">
+                        <input type="checkbox" id="reason5" name="reason" value="Closing of associated Revex internal orders" disabled>
                         <label for="reason5">Closing of associated Revex internal orders</label>
                     </div>
                 </td>
                 <td>
-                    <div class="radio-option">
-                        <input type="radio" id="reason6" name="reason" value="Irrecoverable GST debit where capitalization not done" disabled>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="reason6" name="reason" value="Irrecoverable GST debit where capitalization not done" disabled>
                         <label for="reason6">Irrecoverable GST debit where capitalization not done</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <div class="radio-option">
-                        <input type="radio" id="reason7" name="reason" value="Surplus material transfer outside project" disabled>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="reason7" name="reason" value="Surplus material transfer outside project" disabled>
                         <label for="reason7">Surplus material transfer outside project</label>
                     </div>
                 </td>
                 <td>
-                    </td>
+                    <!-- NEW CHECKBOX ADDED HERE -->
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="reason8" name="reason" value="Reversal of FI Liability" disabled>
+                        <label for="reason8">Reversal of FI Liability</label>
+                    </div>
+                </td>
             </tr>
 
             <tr>
-                <td colspan="2" class="header-cell">Detailed Justification (Max 500 words):<span class="required-star">*</span></td>
+                <td colspan="2" class="header-cell">Detailed Justification:<span class="required-star">*</span></td>
             </tr>
 
             <tr>
                 <td colspan="2">
-                    <textarea id="justification-text" placeholder="Enter your detailed justification here (maximum 500 words)..." disabled></textarea>
-                    <div id="word-counter">0 words written, 500 left</div>
+                    <textarea id="justification-text" placeholder="Enter your detailed justification here (maximum 500 characters)..." disabled></textarea>
+                    <div id="character-counter">0 characters written, 500 left</div>
                     <div id="justification-alert" class="form-alert">Please provide a detailed justification.</div>
                 </td>
             </tr>
@@ -331,6 +338,9 @@
                 <td colspan="2" style="padding: 0; border: none;">
                     <div id="signature-action-alert" class="form-alert" style="text-align: center; padding: 5px;"></div>
                 </td>
+                <tr>
+                    <td colspan="2" class="header-cell">No new Expenditure / Commitment will be made.</td>
+                </tr>
             </tr>
             <tr>
                 <td id="bba-signature-cell">
@@ -361,8 +371,302 @@
         <button id="generate-pdf-btn" disabled>Generate PDF to sign</button>
     </div>
 
-    <script id="security-and-logic-script">
-const _0xfb321=_0x39bf;function _0x39bf(_0x137d1b,_0x17bdd1){const _0x5dfd1f=_0x5dfd();return _0x39bf=function(_0x39bf1b,_0x266d95){_0x39bf1b=_0x39bf1b-0x191;let _0x3d0ba2=_0x5dfd1f[_0x39bf1b];return _0x3d0ba2;},_0x39bf(_0x137d1b,_0x17bdd1);}function _0x5dfd(){const _0x585392=['7643419NfSzYQ','pdf-btn-wrapper','input[name=\x22reason\x22]:checked','html2canvas\x20failed:','error','slice','value','An\x20AR/WBSE\x20Number\x20is\x20required.','from','Justification\x20exceeds\x20','bba-name-container','reason-alert','encode','13BulliD','log','map','Please\x20select\x20a\x20reason.','active','addEventListener','input','3362710kaJsek','Could\x20not\x20update\x20counter:','textContent','style','height','jspdf','\x20words.','alertEl','8BftSzn','word-counter','toggle','padStart','block','display','bba-signature-cell','outerHTML','9778059EUomuf','bba-name-input','245188AzhRXH','trim','table-cell','forEach','form-container','\x20left','split','form-submission.pdf','innerHTML','querySelector','finance-signature-cell','bba-signature-area','width','disabled','toDataURL','DOMContentLoaded','paste','generate-pdf-btn','8hMgXwq','digest','36880308GXBKFS','target','toString','join','justification-text','Please\x20enter\x20the\x20Name\x20of\x20the\x20Finance\x20Member.','none','internal','getElementById','69410vyfckj','An\x20error\x20occurred\x20during\x20PDF\x20creation:','Integrity\x20check\x20failed.\x20Halting\x20all\x20script\x20execution.','bba-name-alert','querySelectorAll','msg','justification-alert','save','add','contains','check','body','classList','addImage','2260yVvlqz','signature-action-alert','83e2f24a59b88c4dd0c6ef0001efd48d8965b3c5cbdfea5e488dac1c8fa1992a','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22text-align:\x20center;\x20padding:\x2040px;\x20font-family:\x20sans-serif;\x20color:\x20#333;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h1>Form\x20Integrity\x20Compromised</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>This\x20form\x20has\x20been\x20modified\x20or\x20corrupted\x20and\x20cannot\x20be\x20used.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22font-size:\x2012px;\x20color:\x20#999;\x22>Please\x20reload\x20the\x20original\x20page.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','change','max','2782292xvlwwl','input[name=\x22reason\x22]','pageSize','POST','12mBcXJw','Please\x20enter\x20an\x20AR/WBSE\x20Number\x20first\x20to\x20enable\x20the\x20form.','subtle','\x20words\x20written,\x20','Please\x20provide\x20a\x20justification.','click','Generating\x20PDF...','6CSuQvA','Select\x20one\x20of\x20the\x20reasons\x20at\x20the\x20top!','length','remove','warning','is-disabled','getWidth','finance-name-alert'];_0x5dfd=function(){return _0x585392;};return _0x5dfd();}(function(_0x42876e,_0x1811a4){const _0x519c5e=_0x39bf,_0x4deb67=_0x42876e();while(!![]){try{const _0x36ce68=parseInt(_0x519c5e(0x1ce))/0x1*(-parseInt(_0x519c5e(0x1c4))/0x2)+-parseInt(_0x519c5e(0x1a0))/0x3*(parseInt(_0x519c5e(0x195))/0x4)+-parseInt(_0x519c5e(0x1bc))/0x5*(parseInt(_0x519c5e(0x199))/0x6)+-parseInt(_0x519c5e(0x1a8))/0x7+-parseInt(_0x519c5e(0x1e0))/0x8*(-parseInt(_0x519c5e(0x1cc))/0x9)+parseInt(_0x519c5e(0x1f9))/0xa*(parseInt(_0x519c5e(0x1eb))/0xb)+-parseInt(_0x519c5e(0x1e2))/0xc*(-parseInt(_0x519c5e(0x1b5))/0xd);if(_0x36ce68===_0x1811a4)break;else _0x4deb67['push'](_0x4deb67['shift']());}catch(_0x1abc14){_0x4deb67['push'](_0x4deb67['shift']());}}}(_0x5dfd,0xbdb0b),document[_0xfb321(0x1ba)](_0xfb321(0x1dd),async()=>{const _0x3cb498=_0xfb321,_0x29a55a=_0x3cb498(0x191),_0x38193f='https://nodejs-serverless-function-express-liard-alpha-80.vercel.app/api/updateCounter';async function _0x41cd62(_0x29d472){const _0x45a718=_0x3cb498,_0x5cba0e=new TextEncoder(),_0x9ce7c2=_0x5cba0e[_0x45a718(0x1b4)](_0x29d472),_0x461b51=await crypto[_0x45a718(0x19b)][_0x45a718(0x1e1)]('SHA-256',_0x9ce7c2),_0x13c6b9=Array[_0x45a718(0x1b0)](new Uint8Array(_0x461b51));return _0x13c6b9[_0x45a718(0x1b7)](_0x117596=>_0x117596[_0x45a718(0x1e4)](0x10)[_0x45a718(0x1c7)](0x2,'0'))[_0x45a718(0x1e5)]('');}async function _0x4bcdf2(){const _0x3966d4=_0x3cb498,_0x1fe20c=document[_0x3966d4(0x1ea)](_0x3966d4(0x1d2));if(!_0x1fe20c)return document[_0x3966d4(0x1f6)][_0x3966d4(0x1d6)]='<h1>Error:\x20Form\x20container\x20not\x20found.</h1>',![];const _0x40facd=_0x1fe20c[_0x3966d4(0x1cb)],_0x234a2a=await _0x41cd62(_0x40facd);if(_0x234a2a!==_0x29a55a){document[_0x3966d4(0x1f6)][_0x3966d4(0x1d6)]=_0x3966d4(0x192);throw new Error(_0x3966d4(0x1ed));}return fetch(_0x38193f,{'method':_0x3966d4(0x198)})['catch'](_0x624d69=>console['error'](_0x3966d4(0x1bd),_0x624d69)),!![];}const _0x5e10a1=await _0x4bcdf2();if(!_0x5e10a1)return;const _0x356c88=document[_0x3cb498(0x1ea)]('ticket-number-input'),_0xa229e=document[_0x3cb498(0x1ea)](_0x3cb498(0x1df)),_0x53aab4=document[_0x3cb498(0x1ea)](_0x3cb498(0x1a9)),_0x4f3c43=document[_0x3cb498(0x1ef)](_0x3cb498(0x196)),_0x3deb5c=document[_0x3cb498(0x1ea)](_0x3cb498(0x1e6)),_0x4b8561=document[_0x3cb498(0x1ea)](_0x3cb498(0x1c5)),_0x50de0c=document['getElementById'](_0x3cb498(0x1ca)),_0x4feed8=document['getElementById'](_0x3cb498(0x1d8)),_0x459922=document[_0x3cb498(0x1ea)](_0x3cb498(0x1d9)),_0x2436b5=document['getElementById']('finance-signature-area'),_0x500f0a=document[_0x3cb498(0x1ea)](_0x3cb498(0x1cd)),_0x321fda=document[_0x3cb498(0x1ea)]('finance-name-input'),_0x28af24=document['getElementById'](_0x3cb498(0x1b2)),_0x321a97=document['getElementById']('finance-name-container'),_0x326b39=document['getElementById']('ticket-alert'),_0x5d8724=document[_0x3cb498(0x1ea)](_0x3cb498(0x1b3)),_0x45b31e=document[_0x3cb498(0x1ea)](_0x3cb498(0x1f1)),_0x4f7173=document[_0x3cb498(0x1ea)](_0x3cb498(0x1ee)),_0x158f19=document[_0x3cb498(0x1ea)](_0x3cb498(0x1a7)),_0x2f2cd8=document[_0x3cb498(0x1ea)](_0x3cb498(0x1fa)),_0x49d7e9=0x1f4,_0x244e4f=_0x10938c=>_0x10938c[_0x3cb498(0x1cf)]()?_0x10938c[_0x3cb498(0x1cf)]()[_0x3cb498(0x1d4)](/\s+/)[_0x3cb498(0x1a2)]:0x0,_0x3d2f88=()=>{const _0x313ac5=_0x3cb498,_0x82ed45=_0x244e4f(_0x3deb5c[_0x313ac5(0x1ae)]),_0x4d56c8=Math[_0x313ac5(0x194)](0x0,_0x49d7e9-_0x82ed45);_0x4b8561[_0x313ac5(0x1be)]=_0x82ed45+_0x313ac5(0x19c)+_0x4d56c8+_0x313ac5(0x1d3),_0x4b8561[_0x313ac5(0x1f7)]['toggle'](_0x313ac5(0x1ac),_0x82ed45>_0x49d7e9),_0x4b8561[_0x313ac5(0x1f7)]['toggle'](_0x313ac5(0x1a4),_0x82ed45>_0x49d7e9*0.8&&_0x82ed45<=_0x49d7e9);},_0x170d12=()=>{const _0x537469=_0x3cb498,_0x5fb2=_0x3deb5c[_0x537469(0x1ae)][_0x537469(0x1cf)]()['split'](/\s+/);_0x5fb2['length']>_0x49d7e9&&_0x3deb5c[_0x537469(0x1ae)][_0x537469(0x1cf)]()!==''&&(_0x3deb5c[_0x537469(0x1ae)]=_0x5fb2[_0x537469(0x1ad)](0x0,_0x49d7e9)[_0x537469(0x1e5)]('\x20')),_0x3d2f88();};_0x3deb5c[_0x3cb498(0x1ba)](_0x3cb498(0x1bb),_0x170d12),_0x3deb5c[_0x3cb498(0x1ba)](_0x3cb498(0x1de),()=>setTimeout(_0x170d12,0x0));const _0x529b31=()=>document['querySelectorAll']('.form-alert')[_0x3cb498(0x1d1)](_0x53ec53=>_0x53ec53['style'][_0x3cb498(0x1c9)]=_0x3cb498(0x1e8)),_0x5ccf42=()=>{const _0x33047f=_0x3cb498;_0x4f3c43['forEach'](_0xbdee1b=>_0xbdee1b[_0x33047f(0x1db)]=!![]),_0x3deb5c[_0x33047f(0x1db)]=!![],_0xa229e[_0x33047f(0x1db)]=!![],_0x53aab4['classList'][_0x33047f(0x1f3)](_0x33047f(0x1a5)),_0x500f0a['disabled']=!![],_0x28af24[_0x33047f(0x1f7)][_0x33047f(0x1f3)](_0x33047f(0x1a5)),_0x321fda[_0x33047f(0x1db)]=!![],_0x321a97[_0x33047f(0x1f7)][_0x33047f(0x1f3)](_0x33047f(0x1a5));},_0x5c6052=()=>{const _0x32704a=_0x3cb498;_0x4f3c43[_0x32704a(0x1d1)](_0xab8b95=>_0xab8b95[_0x32704a(0x1db)]=![]),_0x3deb5c[_0x32704a(0x1db)]=![];};_0x356c88[_0x3cb498(0x1ba)]('input',()=>{const _0x2a4bac=_0x3cb498;_0x356c88[_0x2a4bac(0x1ae)]['trim']()?(_0x326b39[_0x2a4bac(0x1bf)][_0x2a4bac(0x1c9)]=_0x2a4bac(0x1e8),_0x5c6052()):_0x5ccf42();}),[_0x28af24,_0x321a97,_0x53aab4]['forEach'](_0x1df20c=>{const _0x1ba956=_0x3cb498;_0x1df20c[_0x1ba956(0x1ba)](_0x1ba956(0x19e),()=>{const _0x93d646=_0x1ba956;if(_0x356c88[_0x93d646(0x1ae)][_0x93d646(0x1cf)]()==='')alert(_0x93d646(0x19a));else _0x1df20c[_0x93d646(0x1f7)][_0x93d646(0x1f4)](_0x93d646(0x1a5))&&alert('Please\x20select\x20a\x20reason\x20from\x20the\x20options\x20above\x20to\x20enable\x20this\x20field.');});}),[_0x459922,_0x2436b5][_0x3cb498(0x1d1)](_0x42e3e2=>{const _0x5edbbe=_0x3cb498;_0x42e3e2[_0x5edbbe(0x1ba)](_0x5edbbe(0x19e),()=>{const _0x4f5441=_0x5edbbe;if(_0x356c88[_0x4f5441(0x1ae)][_0x4f5441(0x1cf)]()==='')alert(_0x4f5441(0x19a));else{if(!document[_0x4f5441(0x1d7)]('input[name=\x22reason\x22]:checked')){const _0x2853e3=_0x4f5441(0x1a1);alert(_0x2853e3),_0x2f2cd8['textContent']=_0x2853e3,_0x2f2cd8[_0x4f5441(0x1bf)][_0x4f5441(0x1c9)]=_0x4f5441(0x1c8);}}});}),_0x4f3c43[_0x3cb498(0x1d1)](_0xed112=>{const _0x1e8d3c=_0x3cb498;_0xed112['addEventListener'](_0x1e8d3c(0x193),_0x24c334=>{const _0x1b92d4=_0x1e8d3c;_0x529b31();const _0x119b27=parseInt(_0x24c334[_0x1b92d4(0x1e3)]['id']['replace']('reason',''),0xa);_0xa229e['disabled']=![],_0x53aab4['classList'][_0x1b92d4(0x1a3)](_0x1b92d4(0x1a5));const _0x359d5b=_0x119b27%0x2!==0x0;_0x50de0c['colSpan']=_0x359d5b?0x2:0x1,_0x4feed8[_0x1b92d4(0x1bf)]['display']=_0x359d5b?_0x1b92d4(0x1e8):_0x1b92d4(0x1d0),_0x459922[_0x1b92d4(0x1f7)][_0x1b92d4(0x1f3)](_0x1b92d4(0x1b9)),_0x500f0a[_0x1b92d4(0x1db)]=![],_0x28af24['classList'][_0x1b92d4(0x1a3)]('is-disabled'),_0x2436b5[_0x1b92d4(0x1f7)][_0x1b92d4(0x1c6)](_0x1b92d4(0x1b9),!_0x359d5b),_0x321fda[_0x1b92d4(0x1db)]=_0x359d5b,_0x321a97[_0x1b92d4(0x1f7)][_0x1b92d4(0x1c6)](_0x1b92d4(0x1a5),_0x359d5b);if(_0x359d5b)_0x321fda[_0x1b92d4(0x1ae)]='';});}),_0xa229e[_0x3cb498(0x1ba)](_0x3cb498(0x19e),()=>{const _0x452fd5=_0x3cb498;_0x529b31();let _0x29b640=!![];const _0x18d9e2=[{'check':()=>_0x356c88[_0x452fd5(0x1ae)][_0x452fd5(0x1cf)]()==='','alertEl':_0x326b39,'msg':_0x452fd5(0x1af)},{'check':()=>!document[_0x452fd5(0x1d7)](_0x452fd5(0x1aa)),'alertEl':_0x5d8724,'msg':_0x452fd5(0x1b8)},{'check':()=>_0x3deb5c[_0x452fd5(0x1ae)][_0x452fd5(0x1cf)]()==='','alertEl':_0x45b31e,'msg':_0x452fd5(0x19d)},{'check':()=>_0x244e4f(_0x3deb5c[_0x452fd5(0x1ae)])>_0x49d7e9,'alertEl':_0x45b31e,'msg':_0x452fd5(0x1b1)+_0x49d7e9+_0x452fd5(0x1c2)},{'check':()=>!_0x500f0a['disabled']&&_0x500f0a['value'][_0x452fd5(0x1cf)]()==='','alertEl':_0x4f7173,'msg':'Please\x20enter\x20the\x20Name\x20of\x20BBA.'},{'check':()=>!_0x321fda[_0x452fd5(0x1db)]&&_0x321fda[_0x452fd5(0x1ae)]['trim']()==='','alertEl':_0x158f19,'msg':_0x452fd5(0x1e7)}];for(const _0x2eedae of _0x18d9e2){if(_0x2eedae[_0x452fd5(0x1f5)]()){alert(_0x2eedae[_0x452fd5(0x1f0)]),_0x2eedae[_0x452fd5(0x1c3)]['textContent']=_0x2eedae['msg'],_0x2eedae[_0x452fd5(0x1c3)][_0x452fd5(0x1bf)][_0x452fd5(0x1c9)]='block',_0x29b640=![];break;}}if(!_0x29b640)return;const {jsPDF:_0x367340}=window[_0x452fd5(0x1c1)],_0x210759=document['getElementById'](_0x452fd5(0x1d2));console[_0x452fd5(0x1b6)](_0x452fd5(0x19f)),html2canvas(_0x210759,{'scale':0x2})['then'](_0x44a3c9=>{const _0x3b6daa=_0x452fd5;try{const _0x58eaa9=_0x44a3c9[_0x3b6daa(0x1dc)]('image/png'),_0x2e3135=new _0x367340('p','mm','a4'),_0x3271e0=_0x2e3135[_0x3b6daa(0x1e9)][_0x3b6daa(0x197)][_0x3b6daa(0x1a6)](),_0x192516=_0x2e3135['internal'][_0x3b6daa(0x197)]['getHeight'](),_0x2c6098=_0x44a3c9[_0x3b6daa(0x1da)]/_0x44a3c9[_0x3b6daa(0x1c0)];let _0x109d33=_0x3271e0-0x14,_0x12114c=_0x109d33/_0x2c6098;_0x12114c>_0x192516-0x14&&(_0x12114c=_0x192516-0x14,_0x109d33=_0x12114c*_0x2c6098);const _0x3b6134=(_0x3271e0-_0x109d33)/0x2,_0xd23cb1=0xa;_0x2e3135[_0x3b6daa(0x1f8)](_0x58eaa9,'PNG',_0x3b6134,_0xd23cb1,_0x109d33,_0x12114c),_0x2e3135[_0x3b6daa(0x1f2)](_0x3b6daa(0x1d5)),console['log']('PDF\x20generated\x20and\x20saved.');}catch(_0x1d56a8){console[_0x3b6daa(0x1ac)](_0x3b6daa(0x1ec),_0x1d56a8);}})['catch'](_0x4defc6=>{const _0x469efd=_0x452fd5;console['error'](_0x469efd(0x1ab),_0x4defc6);});}),_0x5ccf42(),_0x3d2f88();}));
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Element selections
+            const ticketNumberInput = document.getElementById('ticket-number-input');
+            const generatePdfBtn = document.getElementById('generate-pdf-btn');
+            const pdfBtnWrapper = document.getElementById('pdf-btn-wrapper');
+            const reasonCheckboxes = document.querySelectorAll('input[name="reason"]');
+            const justificationText = document.getElementById('justification-text');
+            const characterCounter = document.getElementById('character-counter');
+            const formInstruction = document.getElementById('form-instruction');
+
+            const bbaSignatureCell = document.getElementById('bba-signature-cell');
+            const financeSignatureCell = document.getElementById('finance-signature-cell');
+
+            const bbaSignatureArea = document.getElementById('bba-signature-area');
+            const financeSignatureArea = document.getElementById('finance-signature-area');
+
+            const bbaNameInput = document.getElementById('bba-name-input');
+            const financeNameInput = document.getElementById('finance-name-input');
+    
+            const bbaNameContainer = document.getElementById('bba-name-container');
+            const financeNameContainer = document.getElementById('finance-name-container');
+    
+            const ticketAlert = document.getElementById('ticket-alert');
+            const reasonAlert = document.getElementById('reason-alert');
+            const justificationAlert = document.getElementById('justification-alert');
+            const bbaNameAlert = document.getElementById('bba-name-alert');
+            const financeNameAlert = document.getElementById('finance-name-alert');
+            const signatureActionAlert = document.getElementById('signature-action-alert');
+
+            const MAX_CHARACTERS = 500;
+
+            // Function to update character counter
+            const updateCharacterCounter = () => {
+                const text = justificationText.value;
+                const charCount = text.length;
+                const charsLeft = Math.max(0, MAX_CHARACTERS - charCount);
+                
+                characterCounter.textContent = `${charCount} characters written, ${charsLeft} left`;
+                
+                characterCounter.classList.remove('warning', 'error');
+                
+                if (charCount > MAX_CHARACTERS) {
+                    characterCounter.classList.add('error');
+                } else if (charCount > MAX_CHARACTERS * 0.8) {
+                    characterCounter.classList.add('warning');
+                }
+            };
+
+            // Function to enforce character limit
+            const enforceCharacterLimit = () => {
+                const text = justificationText.value;
+                
+                if (text.length > MAX_CHARACTERS) {
+                    justificationText.value = text.substring(0, MAX_CHARACTERS);
+                }
+                
+                updateCharacterCounter();
+            };
+
+            justificationText.addEventListener('input', enforceCharacterLimit);
+            justificationText.addEventListener('paste', () => {
+                setTimeout(enforceCharacterLimit, 0);
+            });
+
+            const hideAllAlerts = () => {
+                document.querySelectorAll('.form-alert').forEach(alert => alert.style.display = 'none');
+            };
+
+            const lockForm = () => {
+                reasonCheckboxes.forEach(checkbox => checkbox.disabled = true);
+                justificationText.disabled = true;
+
+                generatePdfBtn.disabled = true;
+                pdfBtnWrapper.classList.add('is-disabled');
+                bbaNameInput.disabled = true;
+                bbaNameContainer.classList.add('is-disabled');
+                financeNameInput.disabled = true;
+                financeNameContainer.classList.add('is-disabled');
+            };
+
+            const unlockForm = () => {
+                reasonCheckboxes.forEach(checkbox => checkbox.disabled = false);
+                justificationText.disabled = false;
+            };
+            
+            ticketNumberInput.addEventListener('input', () => {
+                if (ticketNumberInput.value.trim() !== '') {
+                    ticketAlert.style.display = 'none';
+                    unlockForm();
+                } else {
+                    lockForm();
+                }
+            });
+
+            [bbaNameContainer, financeNameContainer, pdfBtnWrapper].forEach(container => {
+                container.addEventListener('click', () => {
+                    if (ticketNumberInput.value.trim() === '') {
+                        alert('Please enter an AR/WBSE Number first to enable the form.');
+                        return;
+                    }
+                    if (container.classList.contains('is-disabled')) {
+                        alert('Please select a reason from the options above to enable this field.');
+                    }
+                });
+            });
+    
+            [bbaSignatureArea, financeSignatureArea].forEach(area => {
+                area.addEventListener('click', () => {
+                    if (ticketNumberInput.value.trim() === '') {
+                        alert('Please enter an AR/WBSE Number first to enable the form.');
+                        return;
+                    }
+                    if (document.querySelectorAll('input[name="reason"]:checked').length === 0) {
+                        const alertMsg = "Select one of the reasons at the top!";
+                        alert(alertMsg);
+                        signatureActionAlert.textContent = alertMsg;
+                        signatureActionAlert.style.display = 'block';
+                    }
+                });
+            });
+
+            reasonCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', (event) => {
+                    const clickedCheckbox = event.target;
+                    if (clickedCheckbox.disabled) return;
+                    
+                    const isClickedLeft = parseInt(clickedCheckbox.id.replace('reason', ''), 10) % 2 !== 0;
+                    const currentlyChecked = document.querySelectorAll('input[name="reason"]:checked');
+                    
+                    if (currentlyChecked.length > 0) {
+                        const firstCheckedNum = parseInt(currentlyChecked[0].id.replace('reason', ''), 10);
+                        const isSelectionLeft = firstCheckedNum % 2 !== 0;
+
+                        if (isClickedLeft !== isSelectionLeft) {
+                            event.preventDefault(); 
+                            if (isSelectionLeft) {
+                                alert("A checkbox on the left is selected. Please unselect all left-side options to choose an option from the right.");
+                            } else {
+                                alert("A checkbox on the right is selected. Please unselect all right-side options to choose an option from the left.");
+                            }
+                        }
+                    }
+                });
+
+                checkbox.addEventListener('change', () => {
+                    const checkedBoxes = document.querySelectorAll('input[name="reason"]:checked');
+
+                    if (checkedBoxes.length === 0) {
+                        reasonCheckboxes.forEach(cb => cb.disabled = false);
+                        
+                        bbaSignatureCell.colSpan = 1;
+                        financeSignatureCell.style.display = 'table-cell';
+                        [bbaSignatureArea, financeSignatureArea].forEach(area => area.classList.remove('active'));
+                        [bbaNameInput, financeNameInput].forEach(input => input.disabled = true);
+                        [bbaNameContainer, financeNameContainer].forEach(cont => cont.classList.add('is-disabled'));
+
+                        generatePdfBtn.disabled = true;
+                        pdfBtnWrapper.classList.add('is-disabled');
+                        return;
+                    }
+
+                    const firstCheckedId = checkedBoxes[0].id;
+                    const isSelectionLeft = parseInt(firstCheckedId.replace('reason', ''), 10) % 2 !== 0;
+
+                    reasonCheckboxes.forEach(cb => {
+                        const isCbLeft = parseInt(cb.id.replace('reason', ''), 10) % 2 !== 0;
+                        if (!cb.checked) {
+                           cb.disabled = (isSelectionLeft !== isCbLeft);
+                        }
+                    });
+
+                    hideAllAlerts();
+                    generatePdfBtn.disabled = false;
+                    pdfBtnWrapper.classList.remove('is-disabled');
+
+                    if (isSelectionLeft) { 
+                        bbaSignatureCell.colSpan = 2;
+                        bbaNameInput.disabled = false;
+                        bbaNameContainer.classList.remove('is-disabled');
+                        bbaSignatureArea.classList.add('active');
+                        
+                        financeSignatureCell.style.display = 'none';
+                        financeNameInput.disabled = true;
+                        financeNameContainer.classList.add('is-disabled');
+                        financeSignatureArea.classList.remove('active');
+                        financeNameInput.value = '';
+                    } else { 
+                        bbaSignatureCell.colSpan = 1;
+                        financeSignatureCell.style.display = 'table-cell';
+
+                        bbaNameInput.disabled = false;
+                        bbaNameContainer.classList.remove('is-disabled');
+                        bbaSignatureArea.classList.add('active');
+
+                        financeNameInput.disabled = false;
+                        financeNameContainer.classList.remove('is-disabled');
+                        financeSignatureArea.classList.add('active');
+                    }
+                });
+            });
+    
+            // PDF generation logic
+            generatePdfBtn.addEventListener('click', () => {
+                hideAllAlerts();
+                let isValid = true;
+
+                if (ticketNumberInput.value.trim() === '') {
+                    ticketAlert.style.display = 'block';
+                    isValid = false;
+                }
+
+                if (document.querySelectorAll('input[name="reason"]:checked').length === 0) {
+                    reasonAlert.textContent = "Please select at least one reason.";
+                    reasonAlert.style.display = 'block';
+                    isValid = false;
+                }
+
+                if (justificationText.value.trim() === '') {
+                    justificationAlert.style.display = 'block';
+                    isValid = false;
+                }
+                
+                const charCount = justificationText.value.length;
+                if (charCount > MAX_CHARACTERS) {
+                    justificationAlert.textContent = `Your justification exceeds the ${MAX_CHARACTERS} character limit.`;
+                    justificationAlert.style.display = 'block';
+                    isValid = false;
+                }
+        
+                if (!bbaNameInput.disabled && bbaNameInput.value.trim() === '') {
+                     bbaNameAlert.style.display = 'block';
+                     isValid = false;
+                }
+
+                if (!financeNameInput.disabled && financeNameInput.value.trim() === '') {
+                     financeNameAlert.style.display = 'block';
+                     isValid = false;
+                }
+
+                if (!isValid) {
+                    alert('Please fill out all required fields before generating the PDF.');
+                    return; 
+                }
+        
+                const { jsPDF } = window.jspdf;
+                const html2canvas = window.html2canvas;
+                const formToCapture = document.getElementById('form-container');
+
+                // --- START: HIDE ELEMENTS FOR PDF ---
+                characterCounter.style.display = 'none';
+                formInstruction.style.display = 'none';
+                // --- END: HIDE ELEMENTS FOR PDF ---
+
+                html2canvas(formToCapture, { scale: 2 })
+                    .then(canvas => {
+                        try {
+                            const imgData = canvas.toDataURL('image/png');
+                            const pdf = new jsPDF('p', 'mm', 'a4');
+                            const pdfWidth = pdf.internal.pageSize.getWidth();
+                            const pdfHeight = pdf.internal.pageSize.getHeight();
+                            const canvasWidth = canvas.width;
+                            const canvasHeight = canvas.height;
+                            const ratio = canvasWidth / canvasHeight;
+                            let imgWidth = pdfWidth - 20;
+                            let imgHeight = imgWidth / ratio;
+
+                            if (imgHeight > pdfHeight - 20) {
+                                imgHeight = pdfHeight - 20;
+                                imgWidth = imgHeight * ratio;
+                            }
+
+                            const x = (pdfWidth - imgWidth) / 2;
+                            const y = 10;
+
+                            pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+                            pdf.save('form-submission.pdf');
+
+                        } catch (error) {
+                            console.error("An error occurred during PDF creation:", error);
+                        }
+                    })
+                    .catch(err => {
+                        console.error("html2canvas failed:", err);
+                    })
+                    .finally(() => {
+                        // --- START: SHOW ELEMENTS AGAIN ---
+                        characterCounter.style.display = 'block';
+                        formInstruction.style.display = 'block';
+                        // --- END: SHOW ELEMENTS AGAIN ---
+                    });
+            });
+
+            lockForm();
+            updateCharacterCounter();
+        });
     </script>
 
 </body>
